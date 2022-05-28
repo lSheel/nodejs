@@ -1,4 +1,5 @@
 const inicioDebug = require('debug')('app:inicio')
+const ejemRuta = require('./routes/ruta')
 const dbDebug = require('debug')('app:db')
 const express = require('express');
 const config = require('config')
@@ -23,6 +24,7 @@ app.use(express.urlencoded({extended:true}))
 //Middleware para elementos estaticos en un servidor web
 app.use(express.static('public'))
 
+app.use('/ejemRuta', ejemRuta);
 //Configuracion de entornos
 console.log('Aplicacion: ' + config.get('nombre'));
 console.log('BD server: ' + config.get('configDB.host'));
