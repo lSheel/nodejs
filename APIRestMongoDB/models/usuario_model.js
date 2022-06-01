@@ -5,7 +5,8 @@ const mongoose = require('mongoose');
 const usuario_schema = new mongoose.Schema({
   email:{
     type: String,
-    required : true
+    required : true,
+    unique: true
   },
   nombre:{
     type: String,
