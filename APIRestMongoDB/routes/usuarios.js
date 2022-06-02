@@ -46,7 +46,7 @@ ruta.get("/", verificarToken, (req, res) => {
 });
 
 //peticion http post donde crearemos un usuario con los datos que vamos a recibir
-ruta.post("/", (req, res) => {
+ruta.post("/",verificarToken, (req, res) => {
   //Recibimos nuestro body de donde obtendremos los datos necesarios para la creacion del usuarios
   let body = req.body;
   //const usuarioExiste = Usuario.findOne({ email: body.email }).exec();
@@ -117,7 +117,7 @@ ruta.post("/", (req, res) => {
   }
 });
 //Nuestra peticion http put para actualizar datos, en donde el dato que vamos a comparar es el email
-ruta.put("/:email", (req, res) => {
+ruta.put("/:email",verificarToken, (req, res) => {
   const { error, valor } = schema.validate({ nombre: req.body.nombre });
   if (!error) {
     //Creamos nuestra variable resultado donde vamos a llamar al valor resultante de nuestro metodo actualizarUsuario donde le pasamos el email y
@@ -145,7 +145,7 @@ ruta.put("/:email", (req, res) => {
 });
 
 //Peticion http delete
-ruta.delete("/:email", (req, res) => {
+ruta.delete("/:email",verificarToken, (req, res) => {
   //Creamos nuestra variable donde estanciaremos nuestra funcion desactivarUsuario
   let resultado = desactivarUsuario(req.params.email);
   //Manejaremos nuestra promesa

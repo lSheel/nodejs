@@ -59,11 +59,10 @@ router.delete("/:id", verificarToken, (req, res) => {
 });
 
 async function crearCurso(req) {
-  //Con Documentos embebidos
+  //Creando curso con relacion de referencia
   let curso = new Curso({
     titulo: req.body.titulo,
-    //autor: req.usuario._id,
-    autor:  req.usuario,
+    autor: req.usuario._id,
     descripcion: req.body.descripcion,
   });
 
@@ -102,10 +101,10 @@ async function desactivarCurso(id) {
 }
 
 async function listarCursos() {
-  //Esto con documentos embebidos|
+  //Relacion por referencia se usa pooulate para poder acceder a los datos del otro esquema al que hacemos referencia
   let buscar = await Curso.find({
     estado: true,
-  })//.populate("autor","nombre -_id");
+  }).populate("autor","nombre -_id");
 
   return buscar;
 }

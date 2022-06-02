@@ -28,7 +28,7 @@ ruta.post('/', (req, res) =>{
         });
       //Aqui crearemos nuestro jwt, en donde en el payload vamos a tener los datos del usuario (id, nombre y email), le pasaremos una clave que establecemos en la configuracon json y la expiracion que tambien le establecimos
         //en el archivo de configuracion
-      const jwToken = jwt.sign({_id: datos._id, nombre: datos.nombre, email: datos.email}, config.get('configToken.SEED'), {expiresIn: config.get('configToken.expiration')});
+      const jwToken = jwt.sign({usuario: {_id: datos._id, nombre: datos.nombre, email: datos.email}}, config.get('configToken.SEED'), {expiresIn: config.get('configToken.expiration')});
         //jwt.sign({_id: datos._id, nombre: datos.nombre, email: datos.email}, 'password');
         //Le enviaremos al usuario
         res.json({

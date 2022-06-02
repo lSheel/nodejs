@@ -1,21 +1,16 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
-//Con documentos embebidos
-const autorSchema = new mongoose.Schema({
-  nombre: String,
-  email: String
-});
+//Con relaciones con referencia
 
 const cursoSchema = new mongoose.Schema({
   titulo: {
     type: String,
     required: true
   },
-  autor: autorSchema,
-  //autor: {
-    //type: schema.Types.ObjectId, ref: 'Usuario' 
-  //},
+  autor: {
+    type: schema.Types.ObjectId, ref: 'Usuario' 
+  },
   descripcion: {
     type: String,
     required: false
